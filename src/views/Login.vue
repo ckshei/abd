@@ -113,26 +113,29 @@ p a {
 </template>
 
 <script>
-    import firebase from 'firebase';
+import firebase from "firebase";
 
-    export default {
-        name: "login",
-        data() {
-            return {};
-        },
-        methods: {
-            login: function() {
-                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    () => {
-                        this.$router.replace('home')
-                    },
-                        (err) => {
-                        alert('Oops. ' + err.message)
-                    }
-                );
-            }
-        }
-    };
+export default {
+  name: "login",
+  data() {
+    return {};
+  },
+  methods: {
+    login: function() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          () => {
+            this.$router.replace("home");
+          },
+          err => {
+            alert("Oops. " + err.message);
+          }
+        );
+    }
+  }
+};
 </script>
 
 <style scoped>
