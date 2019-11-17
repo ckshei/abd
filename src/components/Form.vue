@@ -1,37 +1,26 @@
 <template>
-  <div class="idea-container">
+  <div class="form">
     <div class="content">
-      <h3>{{ title }}</h3>
-      <p>{{ idea }}</p>
-      <div class="meta">
-        <a href="" class="subscribe"><span>subscribe</span></a>
-      </div>
+      <input class="title" maxlength="20" placeholder="Title of awesome idea">
+      <input class="description" maxlength="140" placeholder="Description of the idea (140 char max)">
+    </div>
+    <div class="meta">
+        <a href="" class="submit">submit</a>
     </div>
     <div class="holder">
-      <div class="upvote">
-        <span class="upvote-container">
-          <font-awesome-icon icon="caret-up" size="lg" />
-          <span class="upvote-num">{{ upvotes }}</span>
-        </span>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Idea",
-  props: {
-    title: String,
-    idea: String,
-    upvotes: Number
-  }
+  name: "Form",
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.idea-container {
+.form {
   display: flex;
   border-bottom: 1px solid #e8e8e8;
   background-color: white;
@@ -40,25 +29,29 @@ export default {
   position: relative;
 }
 
-h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #000000;
-  line-height: 24px;
-  margin: 0;
-  padding: 0;
-  font-variant-numeric: tabular-nums;
-  text-align: left;
+.title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
 }
 
-.content p {
-  font-size: 13px;
-  color: #6f6f6f;
-  line-height: 20px;
-  margin: 0 0 12px;
-  padding: 0;
-  font-variant-numeric: tabular-nums;
-  text-align: left;
+.description {
+    display: block;
+    font-size: 13px;
+    color: #6f6f6f;
+    line-height: 20px;
+    margin: 6px 0 12px;
+    padding: 0;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+    width: 80%;
+    height: 26px;
 }
 
 .holder {
@@ -106,33 +99,20 @@ h3 {
   flex: 1;
 }
 
-.subscribe {
-  margin-top: auto;
-  display: flex;
-  background: #fff;
-  border-color: #e8e8e8;
-  color: #000;
-  fill: #000;
-  height: 24px;
-  padding: 0 8px;
-  vertical-align: top;
-  border-radius: 3px;
-  border: 1px solid #e8e8e8;
-  box-sizing: border-box;
-  align-items: center;
-  outline: 0;
-  text-decoration: none !important;
-}
-
-.subscribe span {
-  line-height: 16px;
-  display: inline-flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  width: inherit;
-  text-transform: uppercase;
-  font-weight: 600px;
-  font-size: 11px;
+.submit {
+    padding: 4px 10px;
+    background: #64ce7c;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 3px;
+    margin-right: 10px;
+    border-color: #e8e8e8;
+    border-radius: 3px;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    align-items: center;
+    outline: 0;
+    text-decoration: none !important;
 }
 
 .subscribe:hover {
