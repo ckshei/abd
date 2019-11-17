@@ -4,10 +4,10 @@
       <input class="title" maxlength="20" placeholder="Title of awesome idea">
       <input class="description" maxlength="140" placeholder="Description of the idea (140 char max)">
     </div>
-    <div class="meta">
-        <a href="" class="submit">submit</a>
-    </div>
     <div class="holder">
+        <div class="upvote-container">
+            <a href="" class="submit">submit</a>
+        </div>
     </div>
   </div>
 </template>
@@ -46,8 +46,8 @@ export default {
     font-size: 13px;
     color: #6f6f6f;
     line-height: 20px;
-    margin: 6px 0 12px;
     padding: 0;
+    margin: 6px 0 0 0;
     font-variant-numeric: tabular-nums;
     text-align: left;
     width: 80%;
@@ -64,6 +64,9 @@ export default {
   text-size-adjust: 100%;
   height: 74px;
   width: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upvote {
@@ -93,54 +96,26 @@ export default {
   justify-content: center;
   width: inherit;
   line-height: 16px;
-  flex-direction: column !important;
   align-items: center;
   font-weight: 600;
   flex: 1;
 }
 
 .submit {
-    padding: 4px 10px;
+    padding: 6px;
     background: #64ce7c;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 900;
     color: #fff;
     border-radius: 3px;
-    margin-right: 10px;
     border-color: #e8e8e8;
     border-radius: 3px;
     border: 1px solid #e8e8e8;
     box-sizing: border-box;
     align-items: center;
     outline: 0;
+    height: 30px;
     text-decoration: none !important;
-}
-
-.subscribe:hover {
-  background: #e8e8e8;
-}
-
-.upvote .upvote-num {
-  line-height: 16px;
-  display: inline-flex;
-  flex-direction: column !important;
-  align-items: center;
-  justify-content: center;
-  width: inherit;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.meta {
-  height: 24px;
-  display: flex;
-  justify-content: left;
-}
-
-.icon {
-  background-repeat: no-repeat;
-  display: block;
-  height: 15px;
-  width: 15px;
+    text-transform: uppercase;
 }
 </style>
