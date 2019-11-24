@@ -17,16 +17,19 @@ export default {
     return {};
   },
   methods: {
-      signUp: function() {
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                () => {
-                    this.$router.replace('home')
-                },
-                (err) => {
-                    alert('Oops. ' + err.message)
-                }
-          );
-      }
+    signUp: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          () => {
+            this.$router.replace("home");
+          },
+          err => {
+            alert("Oops. " + err.message);
+          }
+        );
+    }
   }
 };
 </script>
