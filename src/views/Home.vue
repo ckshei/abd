@@ -1,36 +1,69 @@
 <template>
-  <div class="background">
-    <button @click="logout">Logout</button>
-    <div class="container">
-      <div class="ideas">
-        <Form
-          idea="A community moderated list that allows entrepreneurs to validate their ideas and build initial traction"
-          title="A Better Darwinator"
+  <div>
+    <button class="button logout" v-on:click="logout">Logout</button>
+    <article class="covers" v-for="(idea, idx) in ideas" :key="idx">
+      <div>
+        <img
+          style="margin: 10px"
+          :src="comic.description"
+          height="291px"
+          width="192px"
         />
-        <Idea
-          upvotes="5"
-          idea="A community moderated list that allows entrepreneurs to validate their ideas and build initial traction"
-          title="A Better Darwinator"
-        />
+        <p>{{ idea.title }}</p>
+        <hr />
+        <button class="button" @click="deleteIdea(idea.id)">
+          Delete
+        </button>
       </div>
-    </div>
+    </article>
+
+    <form @submit.prevent="addIdea(title, description)">
+      <h2>Add a New Idea</h2>
+      <input v-model="title" placeholder="Idea Name" class="input" required />
+      <input
+        v-model="description"
+        placeholder="Idea desc"
+        class="input"
+        required/>
+
+      <button type="submit" class="button">Add New Idea</button>
+    </form>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import firebase from "firebase";
-import Idea from "@/components/Idea.vue";
-import Form from "@/components/Form.vue";
-
+import { db } from "../main";
 export default {
-  name: "home",
-  components: {
-    Idea,
-    Form
+  title: "Ideas",
+  data() {
+    return {
+      ideas: [],
+      title: "",
+      description: ""
+    };
+  },
+  firestore() {
+    return {
+      ideas: db.collection("ideas").orderBy("createdAt")
+    };
   },
   methods: {
-    logout: function() {
+    addIdea(title, description) {
+      const createdAt = new Date();
+      const user_id = firebase.auth().currentUser.uid;
+      const upvotes = 1;
+
+      db.collection("ideas").add({ title, description, upvotes, user_id, createdAt });
+      this.title = "";
+      this.description = "";
+    },
+    deleteIdea(id) {
+      db.collection("ideas")
+        .doc(id)
+        .delete();
+    },
+    logout() {
       firebase
         .auth()
         .signOut()
@@ -41,16 +74,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.background {
-  background: #f3f3f3;
-}
-.container {
-  display: flex;
-  justify-content: center;
-}
-.ideas {
-  width: 720px;
-}
-</style>
